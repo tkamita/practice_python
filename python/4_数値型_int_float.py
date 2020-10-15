@@ -44,3 +44,56 @@ print(12 | 21)  #01100 or 10101 = 11101 =>29
 value = 12
 value &= 21 #value = value & 21
 print(value)
+
+
+
+
+
+
+# 数値について、２進数、８進数、１６進数
+  # ２進数
+  #   0b
+  # ８進数
+  #   0o
+  # １６進数
+  #   0x
+age = 0b111 # 7
+print(age)
+age = 0o11 # 9
+print(age)
+age = 0x11 # 17
+print(age)
+# n進数の数値を文字列にする
+#   bin(2進数)
+#   oct(8進数)
+#   hex(16進数)
+print(bin(15)) #0b1111
+print(oct(15)) #0o17
+print(hex(15)) #0xf
+
+
+# 複素数
+  # 実数と虚数を含んだ数値
+  # https://qiita.com/butchi_y/items/a4a7e992870d75e5ee7a
+  # 複素数を表す方法にcomplex関数がある
+  # 虚数: x + yj
+  # real(実数部)
+  # imag(虚数部)
+a = 1 + 3j
+b = 3 + 5j
+print(a, b)
+print(a + b)
+print(a - b)
+print(a * b)
+
+a = complex(1, 3)
+b = complex(3, 5)
+print(a, b)
+print(a + b)
+print(a - b)
+print(a * b)
+
+print(a.real)
+print(a.imag)
+
+
