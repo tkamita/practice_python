@@ -1,0 +1,47 @@
+目標：
+  確率、統計の計算、分析手法を習得し、応用する
+  数値解析、グラフ理論、待ち行列理論
+
+
+順列
+  異なるn個の中から異なるr個を取り出して１列に並べる数
+  https://www.risuuhakusyo.com/junretu
+
+確率と統計
+  組み合わせ
+    異なるn個の中から異なるr個を組み合わせる数（順番は問わない）
+    https://www.risuuhakusyo.com/kumiawase
+  
+  確率
+    該当するパターン/組み合わせ
+    加法定理
+      https://coinbaby8.com/probability.html
+    全事象
+    ド・モルガンの法則
+      https://www.mkamimura.com/2019/03/Mathematics-Python-Looking-at-Relationship-Inequality-Set-Proposition-Condition-Proposition-De-Morgan-s-Law-Truth-Table.html
+    条件付き確率
+    事後確率
+    確率の乗法定理
+    ベイズの理論
+      https://note.com/agw/n/nbbb4b9b4d218
+
+    度数分布表
+      データの持つ性質を表すため、階級と度数（起こった回数）を対応させたもの
+      https://www.python.ambitious-engineer.com/archives/2106
+        ヒストグラム
+        パレード図
+      
+    グラフ理論
+      https://qiita.com/maskot1977/items/e1819b7a1053eb9f7d61
+      無向グラフ
+      有向グラフ
+      完全グラフ
+      重み付きグラフ
+
+    待ち行列
+      M/M/1モデル
+      https://joho-ka.mints.ne.jp/queue-in-python?doing_wp_cron=1602760255.4928929805755615234375
+      https://qiita.com/SaitoTsutomu/items/f67c7e9f98dd27d94608
+
+    正規分布
+      https://qiita.com/yossyyossy/items/601446f832f480d1d54a
