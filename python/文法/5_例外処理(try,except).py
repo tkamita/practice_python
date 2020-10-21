@@ -90,3 +90,39 @@ finally:      #ここで一旦、変数を初期化したり、logに出力し�
 print('処理が完了')
 
 
+
+# raise
+#   メッセージと例外を返すことができる
+
+
+# 例外自作  exceptionを継承
+# class MyException(Exception):
+
+
+def devide(a, b):
+  if b == 0:
+    raise ZeroDivisionError('0ではわりきれません')
+  else:
+    return a / b
+
+try:
+  c = devide(10, 0)
+except Exception as e:
+  print(e, type(e))
+
+
+class MyException(Exception):   #myexceptionの部分は自分がつけたいエラー名
+  pass    #error名をつけたいだけなので特に処理は書かなくて大丈夫
+def devide(a, b):
+  if b == 0:
+    raise MyException('0ではわりきれません')
+  else:
+    return a / b
+
+try:
+  c = devide(10, 0)
+except Exception as e:
+  print(e, type(e))
+
+
+
