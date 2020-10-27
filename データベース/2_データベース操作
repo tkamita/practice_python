@@ -1,0 +1,131 @@
+データ操作
+  選択
+    テーブルから必要なレコードだけ取り出す
+  挿入
+  削除
+  射影
+    データの一部のカラムだけを抽出する
+  結合操作
+    複数のテーブルを結合して抽出する
+
+
+SELECT文
+  SELECT * FROM table名;
+INSERT
+  INSERT INTO table名 VALUES(7, 'hoge', 19, 3);
+  INSERT INTO table名(student_no, カラム名, カラム名) VALUES(7, 'hoge', 3);       指定したカラムに挿入、指定してないカラムにはデフォルト値かNULLが入る
+UPDATE
+  UPDATE table名 SET name(カラム名)='tanaka' WHERE id = 6;
+  UPDATE table名 set name(カラム名)='suzuki';    テーブルのnameカラム全てをsuzukiにする
+DELETE
+  DELETE FROM table名 where id = 6;
+  DELETE FROM table名;      テーブルの行を全削除
+  
+
+WHERE句
+  行を絞り込む
+    SELECT  * FROM student_no = 1
+  
+  列名 = 1
+  列名 <> 1
+    1以外
+  列名 < 1
+  列名 > 1
+
+  列名 BETWEEN oo AND xx
+    student_no BETWEEN 1 AND 100
+      1以上100以下
+  
+  列名 IN(x, y, z)
+    student_no IN(1, 2, 3)
+      値がリストのいずれか
+  列名 NOT IN(x, y, z)
+    student_no NOT IN(1,2,3)
+      値がリスト以外
+  
+  列名 IS NULL
+    name IS NULL
+      nameがnull
+  列名 IS NOT NULL
+    name IS NOT NULL
+      nameがnullでない
+  
+  列名 LIKE パターン
+  列名 NOT LIKE パターン
+
+
+
+DISTINCT句
+  重複行を１つにまとめる
+
+  SELECT DISTINCT name FROM students;         同じ名前で登録があれば一つにまとめる
+  SELECT DISTINCT name, age FROM students;      名前と年齢が同じレコードがあれば１つにまとめる
+
+
+
+ORDER BY句
+  SELECT * FROM students ORDER BY age(ASC);     ageで昇順に並び替える
+  SELECT * FROM students ORDER BY age DESC;     ageで降順に並び替える
+  SELECT * FROM students ORDER BY age, name(ASC);
+
+
+
+GROUP BY句
+  一部の列を用いて表をまとめる
+
+  SELECT name, SUM(salary), MIN(salary), AVG(salary) FROM students GROUP BY name;
+    同じ値のnameをまとめてその合計の値を出す
+      仮に鈴木がいたら、テーブル全部の鈴木の合計給与、最低給与、平均給与を計算する
+  SELECT name, SUM(salary), MIN(salary), AVG(salary) FROM students GROUP BY name HAVING AVG(salary) >= 140;
+    上記の文に更に条件を入れて検索する
+    平均給与が１４０以上だけ
+  集合関数
+    COUNT()
+    AVG()
+    SUM()
+    MAX()
+    MIN()
+
+
+副問合わせ
+  SELECT文の中にSELECTを記載して絞り込み
+  exists(存在する物)を利用して検索
+
+  SELECT * FROM students WHERE school_no IN(SELECT school_no FROM schools where name = 'hoge')
+    複数テーブル
+
+  SELECT * FROM students WHERE EXISTS(SELECT * FROM schools where name = 'hoge' AND school_no = students.school_no);
+  
+
+viewの作成
+  テーブルからの問い合わせを仮想的に格納する（外部スキーマ）
+    CREATE VIEW v_students_over_15 AS SELECT student_no, name FROM students WHERE age > 15;
+更新可能なビュー
+  ビューテーブルからデータを引っ張ってきたテーブルを更新する
+    １、FROM句の表は１つしかないこと
+    ２、WHERE句に副問い合わせがないこと
+    ３、GROUP BYがないこと
+    ４、DISTINCTや算術演算子（MAX等）を利用していないこと
+  
+
+
+テーブル定義
+  CREATE文を用いてテーブルを作成する
+
+  CREATE TABLE students(student_no INTEGER PRIMARY KEY,
+                        name VARCHAR(256) NOT NULL,
+                        age INTEGER CHECK(age >= 0) DEFAULT 0,
+                        school_no INTEGER,
+                        FOREIGN KEY (school_no)
+                        REFERENCES schools(school_no))
+
+
+GRANT文
+REVOKE文
+  GRANT ALL PRIVILEGES ON students TO USER1
+    user1にstudentsテーブルへの全アクセス権を与える
+  GRANT SELECT,UPDATE ON students TO USER1
+    user1にstudentsテーブルへのselect,update権を与える
+  REVOKE ALL PRIVILEGES ON students to USER2
+    user2からstudentsテーブルへの全アクセル権を剥奪する
+    
